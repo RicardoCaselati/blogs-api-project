@@ -1,9 +1,19 @@
 module.exports = (sequelize, DataTypes) => {
   const BlogPost = sequelize.define('BlogPost', {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
     title: DataTypes.STRING,
     content: DataTypes.STRING,
     published: DataTypes.DATE,
     updated: DataTypes.DATE,
+    userId: {
+      foreignKey: 'userId',
+      as: 'users',
+    }
   }, {
     tablename: 'blog_posts',
     underscored: true,
@@ -13,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
     BlogPost.belongsTo(models.User, {
       foreignKey: 'user_id',
       as: 'users',
+    })
+    BlogPost.hasMany(models.PostCategory, {
+      foreignKey: 'post_id',
+      as: 'post_categories',
     })
   };
 
