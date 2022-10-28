@@ -1,7 +1,5 @@
 const categoryService = require('../services/category.service');
 
-// const { createToken } = require('../utils/jwt.util');
-
 const { Category } = require('../models');
 
 const createCategory = async (req, res) => {
@@ -14,14 +12,20 @@ const createCategory = async (req, res) => {
   }
 
   const newCategoryObj = await categoryService.createCategory(req.body);
-  console.log(newCategoryObj);
-  // const { password: _, ...userWithoutPassword } = newUserData;
-
-  // const token = createToken(userWithoutPassword);
 
   return res.status(201).json(newCategoryObj);
 };
 
+const categoryGetAll = async (_req, res) => {
+  try {
+    const users = await categoryService.catagoryGetAll();
+    return res.status(200).json(users);
+  } catch (e) {
+    res.status(500).json({ message: 'Ocorreu um erro' });
+  }
+};
+
 module.exports = {
     createCategory,
+    categoryGetAll,
   };
