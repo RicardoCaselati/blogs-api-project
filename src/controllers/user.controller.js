@@ -33,15 +33,11 @@ const usersGetAll = async (_req, res) => {
 
 const findById = async (req, res) => {
   const { id } = req.params;
-  const user = await userService.findById(id);
+  const [user] = await userService.findById(id);
 
   if (!user) {
-    console.log('entrei');
     res.status(404).json({ message: 'User does not exist' });
   }
-
-  const userReturn = user.dataValues;
-  delete userReturn.password;
 
   res.status(200).json(user);
 };

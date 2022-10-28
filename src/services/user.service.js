@@ -12,7 +12,10 @@ const usersGetAll = async () => {
   return users;
 };
 
-const findById = (id) => User.findByPk(id);
+const findById = async (id) => User.findAll({
+  where: { id }, 
+  attributes: { exclude: ['password'] },
+});
 
 module.exports = {
   createUser,

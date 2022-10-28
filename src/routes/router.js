@@ -2,6 +2,7 @@ const express = require('express');
 
 const authRouter = require('./auth.router');
 const userRouter = require('./user.router');
+const categoryRouter = require('./category.router');
 
 const authMiddleware = require('../middlewares/auth.middleware');
 
@@ -14,7 +15,7 @@ routers.use('/user', userRouter);
 routers.use(authMiddleware.validateToken);
 
 // rotas privadas - precisar ter feito autenticação (token)
-// routers.use('/courses', courseRouter);
+routers.use('/categories', categoryRouter);
 // routers.use('/students', studentRouter);
 // routers.use('/modules', moduleRouter);
 
