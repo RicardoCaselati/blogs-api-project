@@ -1,22 +1,19 @@
 // const Joi = require('joi');
 const jwtUtil = require('../utils/jwt.util');
 
-// const { User } = require('../models');
+// const validateBody = (params) => {
+//   const schema = Joi.object({
+//     displayName: Joi.string().min(8).required(),
+//     email: Joi.string().email().required(),
+//     password: Joi.string().min(6).required(),
+//     image: Joi.string(),
+//   });
 
-// const validateBody = (res, params) => {
-//   try {
-//     const { email, password } = params;
+//   const { error, value } = schema.validate(params);
 
-//     if (email === '' || password === '') {
-//       return res.status(400).json({ message: 'Some required fields are missing' });
-//     }
+//   if (error) return error;
 
-//     return params;
-//   } catch (e) {
-//     res.status(500).json({ message: 'Algo deu errado' });
-//   }
-
-//   return params;
+//   return value;
 // };
 
 // const validateLogin = async ({ email, password }) => {
