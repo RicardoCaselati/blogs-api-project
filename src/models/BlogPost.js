@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     published: DataTypes.DATE,
     updated: DataTypes.DATE,
     userId: {
+      field: 'user_id',
       type: DataTypes.INTEGER,
     }
   }, {
@@ -22,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   BlogPost.associate = (models) => {
     BlogPost.belongsTo(models.User, {
       foreignKey: 'user_id',
-      as: 'users',
+      as: 'user',
     })
     BlogPost.hasMany(models.PostCategory, {
       foreignKey: 'post_id',

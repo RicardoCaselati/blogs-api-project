@@ -26,8 +26,8 @@ const createPost = async (req, res) => {
 
 const postGetAll = async (_req, res) => {
     try {
-        const users = await postService.postGetAll();
-        return res.status(200).json(users);
+        const posts = await postService.postGetAll();
+        return res.status(200).json(posts);
     } catch (e) {
         res.status(500).json({ message: 'Ocorreu um erro' });
     }
