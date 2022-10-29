@@ -54,4 +54,22 @@ const validateCategoryBody = (req, res, next) => {
   next();
 };
 
-module.exports = { validateToken, validateUserBody, validateCategoryBody };
+const validatePostBody = (req, res, next) => {
+  const params = req.body;
+  const schema = Joi.object({
+    title: Joi.string().required(),
+    content: Joi.string().required(),
+    categoryIds: Joi.array().items(Joi.number()).required(),
+  });
+
+  const { error } = schema.validate(params);
+
+  if (error) {
+    const errorMessage = error.details[0].message;
+    return res.status(400).json({ message: errorMessage });
+  }
+
+  next();
+};
+
+module.exports = { validateToken, validateUserBody, validateCategoryBody, validatePostBody };

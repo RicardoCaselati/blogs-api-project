@@ -18,7 +18,7 @@ const createCategory = async (req, res) => {
 
 const categoryGetAll = async (_req, res) => {
   try {
-    const users = await categoryService.catagoryGetAll();
+    const users = await categoryService.categoryGetAll();
     return res.status(200).json(users);
   } catch (e) {
     res.status(500).json({ message: 'Ocorreu um erro' });
