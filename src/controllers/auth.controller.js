@@ -13,10 +13,7 @@ const login = async (req, res) => {
     if (!user || user.password !== password) {
         return res.status(400).json({ message: 'Invalid fields' });
     }
-
-    // const token = await authService.validateLogin({ email, password });
-
-    // const token = process.env.JWT_SECRET; 
+     
     const token = await createToken(email);
     res.status(200).json({ token });
 };

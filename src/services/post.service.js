@@ -1,18 +1,25 @@
-const { BlogPost } = require('../models');
-const { Category } = require('../models');
+const { BlogPost, PostCategory } = require('../models');
 
-const createPost = async (body, userId) => {
-    const { title, content, categoryIds } = body;
-    BlogPost.create(title, content, userId);
-    Category.create(categoryIds);
-};
-
-const postGetAll = async () => {
-    const posts = await Category.findAll();
-    return posts;
+const createPost = async ({ title, content, userId, published, updated, categoryIds }) => {
+    const blogPost = await BlogPost.create({
+        title,
+        content,
+        userId,
+        published,
+        updated,
+    });
+    categoryIds.forEach((categoryId) => {
+        if (!categoryId) {
+            return;
+        }
+        PostCategory.create({
+            postId: blogPost.id,
+            categoryId,
+        });
+    });
+    return blogPost;
 };
 
 module.exports = {
     createPost,
-    postGetAll,
 };

@@ -10,16 +10,18 @@ const createPost = async (req, res) => {
     const existingIds = categoryIds.filter((eachCatId) => catNewMap.includes(eachCatId));
 
     if (categoryIds.length !== existingIds.length) {
-        return res.status(409).json({ message: 'Category already registered' });
+        return res.status(400).json({ message: 'one or more "categoryIds" not found' });
     }
 
-    const { data } = req.user;
-    const { dataValues } = await userService.getUserByEmail(data);
+    const { data: email } = req.user;
+    const { dataValues } = await userService.getUserByEmail(email);
     const userId = dataValues.id;
 
-    const newCategoryData = await postService.createPost(req.body, userId);
-    console.log(req.body);
-    return res.status(201).json(newCategoryData);
+    const date = new Date(Date.now()).toISOString();
+
+    const newData = await postService
+        .createPost({ userId, updated: date, published: date, ...req.body });
+    return res.status(201).json(newData);
 };
 
 const postGetAll = async (_req, res) => {
