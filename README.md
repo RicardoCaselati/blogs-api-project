@@ -1,7 +1,6 @@
 <h1 align="center">Blogs API</h1>
-
-------------
-
+</br>
+</br>
 </br>
 <h3>🖥️ Desenvolvimento</h3>
 
