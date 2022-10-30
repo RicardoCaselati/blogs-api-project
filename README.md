@@ -19,5 +19,5 @@
 <img src="https://sequelize.org/img/logo.svg" width="64px" alt="Sequelize">
 <img src="https://jwt.io/img/pic_logo.svg" width="64px" alt="JWT">
 <img src="https://cdn3.emoji.gg/emojis/3046_MySQL.png" width="64px" alt="MySQL">
-<img src=https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.39On_K_Tb95XStMK9aMx6wAAAA%26pid%3DApi&f=1&ipt=b76af1419cb1b50b7769b90ef64948596bcbc3cc3ebb150ec3aaaffe48aa03de&ipo=images style="width: 64px" alt="docker"/>
+<img src="https://www.docker.com/wp-content/uploads/2022/01/Docker-Logo-White-RGB_Horizontal-730x189-1.png.webp" style="width: 64px" alt="docker"/>
 </div>
