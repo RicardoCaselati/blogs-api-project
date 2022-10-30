@@ -1,4 +1,4 @@
-<h3>Blogs API</h3>
+<h1 align="center">Blogs API</h1>
 
 ------------
 
