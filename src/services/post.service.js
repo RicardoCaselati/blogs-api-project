@@ -28,7 +28,16 @@ const postGetAll = async () => BlogPost.findAll({
     // attributes: { exclude: ['user_id'] },
 });
 
+const postById = (id) => BlogPost.findByPk(id, {
+    attributes: { exclude: ['user_id'] },
+    include: [
+        { model: User, as: 'user', attributes: { exclude: ['password'] } },
+        { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+});
+
 module.exports = {
     createPost,
     postGetAll,
+    postById,
 };
