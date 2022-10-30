@@ -36,8 +36,14 @@ const postById = (id) => BlogPost.findByPk(id, {
     ],
 });
 
+const postUpdate = async (id, { title, content }) => BlogPost.update(
+    { title, content },
+    { where: { id } },
+);
+
 module.exports = {
     createPost,
     postGetAll,
     postById,
+    postUpdate,
 };

@@ -44,8 +44,32 @@ const postById = async (req, res) => {
     res.status(200).json(post);
 };
 
+const postUpdate = async (req, res) => {
+    const { id } = req.params;
+    const { data: email } = req.user;
+    const { dataValues } = await userService.getUserByEmail(email);
+    const userId = dataValues.id;
+
+    const postObject = await postService.postById(id);
+    const postUserId = postObject.dataValues.userId;
+
+    if (userId !== postUserId) {
+        return res.status(401).json({ message: 'Unauthorized user' });
+    }
+
+    const postUpdated = await postService.postUpdate(id, req.body);
+
+    if (postUpdated) {
+        const updatedObj = await postService.postById(id);
+        return res.status(200).json(updatedObj);
+    }
+
+    return res.status(404).json({ message: `Post ${id} não encontrado` });
+};
+
 module.exports = {
     createPost,
     postGetAll,
     postById,
+    postUpdate,
 };
