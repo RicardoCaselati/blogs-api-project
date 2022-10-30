@@ -78,7 +78,7 @@ const postDelete = async (req, res) => {
     if (!updatedObj) {
         return res.status(404).json({ message: 'Post does not exist' });
     }
-    
+
     const usrObjId = updatedObj.dataValues.userId;
 
     if (userLoggedId === usrObjId) {
@@ -88,10 +88,22 @@ const postDelete = async (req, res) => {
     return res.status(401).json({ message: 'Unauthorized user' });
 };
 
+const postSearch = async (req, res) => {
+    const { q: query } = req.query;
+    const findedPost = await postService.postSearch(query);
+
+    if (!findedPost) {
+        return res.status(404).json({ message: 'Post does not exist' });
+    }
+
+    res.status(200).json(findedPost);
+};
+
 module.exports = {
     createPost,
     postGetAll,
     postById,
     postUpdate,
     postDelete,
+    postSearch,
 };

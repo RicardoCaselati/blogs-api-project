@@ -44,11 +44,11 @@ const findById = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   const { data: email } = req.user;
-    const { dataValues } = await userService.getUserByEmail(email);
-    const { id, displayName } = dataValues;
+  const { dataValues } = await userService.getUserByEmail(email);
+  const { id, displayName } = dataValues;
 
   const isRemoved = await userService.deleteUser(id);
-  
+
   if (isRemoved) {
     return res.status(204).json({ message: `Usuário ${displayName} removido com sucesso` });
   }

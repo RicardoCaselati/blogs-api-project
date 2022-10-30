@@ -20,9 +20,9 @@ const findById = async (id) => User.findAll({
 const getUserByEmail = (email) => User.findOne({ where: { email } });
 
 const deleteUser = async (id) => {
-  const qtdRemoved = await User.destroy({ where: { id } });
+  const userRemoved = await User.destroy({ where: { id } });
 
-  return qtdRemoved > 0;
+  return userRemoved > 0;
 };
 
 module.exports = {
