@@ -16,7 +16,7 @@
 ------------
 
 <div style="display: flex; align-items: center; justify-content: space-between; width: 260px">
-
+<img src="https://nodejs.org/static/images/logo.svg" width="64px" alt="Node.Js">
 <img src="https://sequelize.org/img/logo.svg" width="64px" alt="Sequelize">
 <img src="https://jwt.io/img/pic_logo.svg" width="64px" alt="JWT">
 <img src="https://cdn3.emoji.gg/emojis/3046_MySQL.png" width="64px" alt="MySQL">
