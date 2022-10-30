@@ -42,8 +42,23 @@ const findById = async (req, res) => {
   res.status(200).json(user);
 };
 
+const deleteUser = async (req, res) => {
+  const { data: email } = req.user;
+    const { dataValues } = await userService.getUserByEmail(email);
+    const { id, displayName } = dataValues;
+
+  const isRemoved = await userService.deleteUser(id);
+  
+  if (isRemoved) {
+    return res.status(204).json({ message: `Usuário ${displayName} removido com sucesso` });
+  }
+
+  return res.status(404).json({ message: `Usuário ${displayName} não encontrado` });
+};
+
 module.exports = {
   createUser,
   usersGetAll,
   findById,
+  deleteUser,
 };
