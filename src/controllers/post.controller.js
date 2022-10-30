@@ -67,9 +67,31 @@ const postUpdate = async (req, res) => {
     return res.status(404).json({ message: `Post ${id} não encontrado` });
 };
 
+const postDelete = async (req, res) => {
+    const { id } = req.params;
+    const { data: email } = req.user;
+    const { dataValues } = await userService.getUserByEmail(email);
+    const userLoggedId = dataValues.id;
+
+    const updatedObj = await postService.postById(id);
+
+    if (!updatedObj) {
+        return res.status(404).json({ message: 'Post does not exist' });
+    }
+    
+    const usrObjId = updatedObj.dataValues.userId;
+
+    if (userLoggedId === usrObjId) {
+        await postService.postDelete(id);
+        return res.status(204).json({ message: `Post ${id} removido com sucesso` });
+    }
+    return res.status(401).json({ message: 'Unauthorized user' });
+};
+
 module.exports = {
     createPost,
     postGetAll,
     postById,
     postUpdate,
+    postDelete,
 };

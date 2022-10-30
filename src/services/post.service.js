@@ -25,7 +25,6 @@ const postGetAll = async () => BlogPost.findAll({
         { model: User, as: 'user', attributes: { exclude: ['password'] } },
         { model: Category, as: 'categories', through: { attributes: [] } },
     ],
-    // attributes: { exclude: ['user_id'] },
 });
 
 const postById = (id) => BlogPost.findByPk(id, {
@@ -41,9 +40,16 @@ const postUpdate = async (id, { title, content }) => BlogPost.update(
     { where: { id } },
 );
 
+const postDelete = async (id) => {
+    const qtdRemoved = await BlogPost.destroy({ where: { id } });
+
+    return qtdRemoved > 0;
+};
+
 module.exports = {
     createPost,
     postGetAll,
     postById,
     postUpdate,
+    postDelete,
 };
